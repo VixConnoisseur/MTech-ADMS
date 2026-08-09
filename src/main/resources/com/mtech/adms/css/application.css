@@ -1,0 +1,7 @@
+/* MTech-ADMS Global Stylesheet
+   Intentionally empty for now — populated in Phase 7 (Main Layout)
+   once we define the design system (colors, fonts, spacing). */
+
+.root-pane {
+    -fx-background-color: #f4f5f7;
+}
