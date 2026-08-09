@@ -6,17 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * Application entry point for MTech Asset & Deployment Management System.
- * Responsible only for bootstrapping the JavaFX Stage/Scene.
- * All business logic lives in the service/dao layers, not here.
- */
 public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(
-                getClass().getResource("/com/mtech/adms/fxml/MainView.fxml")
+                getClass().getResource("/com/mtech/adms/fxml/LoginView.fxml")
         );
 
         Scene scene = new Scene(root, 1024, 768);

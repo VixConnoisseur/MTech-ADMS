@@ -1,7 +1,38 @@
-/* MTech-ADMS Global Stylesheet
-   Intentionally empty for now — populated in Phase 7 (Main Layout)
-   once we define the design system (colors, fonts, spacing). */
-
 .root-pane {
     -fx-background-color: #f4f5f7;
+}
+
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 12, 0, 0, 2);
+}
+
+.login-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a1a1a;
+}
+
+.login-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6b7280;
+}
+
+.login-error {
+    -fx-text-fill: #dc2626;
+    -fx-font-size: 12px;
+}
+
+.login-button {
+    -fx-background-color: #2563eb;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 10 0;
+    -fx-background-radius: 4;
+    -fx-cursor: hand;
+}
+
+.login-button:hover {
+    -fx-background-color: #1d4ed8;
 }
