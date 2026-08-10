@@ -1,7 +1,7 @@
 package com.mtech.adms.util;
 
 /**
- * Application-wide constant values. Centralizing these avoids
+ * Application-wide constant values. Centralizing these avoid
  * "magic strings" scattered across the codebase and makes future
  * changes (e.g. renaming a status) a one-line edit instead of a
  * find-and-replace across dozens of files.
@@ -56,6 +56,17 @@ public final class Constants {
         public static final String MEMBER = "MEMBER";
 
         private DeploymentRole() {
+        }
+    }
+
+    public static final class ProjectStatus {
+        public static final String PLANNING = "PLANNING";
+        public static final String ACTIVE = "ACTIVE";
+        public static final String ON_HOLD = "ON_HOLD";
+        public static final String COMPLETED = "COMPLETED";
+        public static final String CANCELLED = "CANCELLED";
+
+        private ProjectStatus() {
         }
     }
 

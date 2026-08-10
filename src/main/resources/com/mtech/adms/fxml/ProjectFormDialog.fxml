@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.mtech.adms.controller.ProjectFormController"
+      spacing="14" styleClass="form-dialog" prefWidth="420">
+    <padding>
+        <Insets top="24" bottom="24" left="24" right="24"/>
+    </padding>
+
+    <Label fx:id="formTitleLabel" text="Add Project" styleClass="panel-title"/>
+
+    <VBox spacing="6">
+        <Label text="Project Name" styleClass="login-field-label"/>
+        <TextField fx:id="nameField" promptText="e.g. ABC Tower Cabling" styleClass="login-field"/>
+    </VBox>
+
+    <VBox spacing="6">
+        <Label text="Client Name" styleClass="login-field-label"/>
+        <TextField fx:id="clientField" promptText="e.g. ABC Realty Corp." styleClass="login-field"/>
+    </VBox>
+
+    <HBox spacing="12">
+        <VBox spacing="6" HBox.hgrow="ALWAYS">
+            <Label text="Start Date" styleClass="login-field-label"/>
+            <DatePicker fx:id="startDatePicker" maxWidth="Infinity"/>
+        </VBox>
+        <VBox spacing="6" HBox.hgrow="ALWAYS">
+            <Label text="End Date" styleClass="login-field-label"/>
+            <DatePicker fx:id="endDatePicker" maxWidth="Infinity"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="6">
+        <Label text="Status" styleClass="login-field-label"/>
+        <ComboBox fx:id="statusComboBox" maxWidth="Infinity"/>
+    </VBox>
+
+    <VBox spacing="6">
+        <Label text="Sites Covered" styleClass="login-field-label"/>
+        <ListView fx:id="sitesListView" prefHeight="120"/>
+    </VBox>
+
+    <Label fx:id="errorLabel" styleClass="login-error" wrapText="true"
+           maxWidth="Infinity" managed="false" visible="false"/>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Cancel" onAction="#handleCancel" styleClass="secondary-button"/>
+        <Button fx:id="saveButton" text="Save" onAction="#handleSave" styleClass="primary-button"/>
+    </HBox>
+
+</VBox>

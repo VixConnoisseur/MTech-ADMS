@@ -79,15 +79,13 @@ public class MainLayoutController {
     @FXML
     private void showEmployees() {
         setActiveNav(navEmployees);
-        pageTitleLabel.setText("Employees");
-        AppLogger.info("Employees module not yet implemented (Phase 9).");
+        loadContent("/com/mtech/adms/fxml/EmployeesView.fxml", "Employees");
     }
 
     @FXML
     private void showProjects() {
         setActiveNav(navProjects);
-        pageTitleLabel.setText("Projects");
-        AppLogger.info("Projects module not yet implemented (Phase 10).");
+        loadContent("/com/mtech/adms/fxml/ProjectsView.fxml", "Projects");
     }
 
     @FXML

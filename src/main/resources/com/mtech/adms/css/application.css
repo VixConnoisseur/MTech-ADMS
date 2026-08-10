@@ -462,3 +462,99 @@
     -fx-text-fill: #6b7280;
     -fx-padding: 8 0 0 0;
 }
+
+/* =====================================================
+   Employee Management (Phase 9) — reusable form/table patterns
+   ===================================================== */
+
+.primary-button {
+    -fx-background-color: #1E90FF;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-padding: 9 18 9 18;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #1476d6;
+}
+
+.secondary-button {
+    -fx-background-color: #f4f6fa;
+    -fx-text-fill: #374151;
+    -fx-font-size: 12px;
+    -fx-padding: 9 18 9 18;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #e5e7eb;
+}
+
+.badge-active {
+    -fx-background-color: #dcfce7;
+    -fx-text-fill: #16a34a;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 3 10 3 10;
+    -fx-background-radius: 10;
+}
+
+.badge-inactive {
+    -fx-background-color: #f3f4f6;
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 3 10 3 10;
+    -fx-background-radius: 10;
+}
+
+.table-action-button {
+    -fx-background-color: #f4f6fa;
+    -fx-text-fill: #374151;
+    -fx-font-size: 11px;
+    -fx-padding: 5 10 5 10;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.table-action-button:hover {
+    -fx-background-color: #e5e7eb;
+}
+
+.table-action-danger {
+    -fx-text-fill: #dc2626;
+}
+
+.table-action-success {
+    -fx-text-fill: #16a34a;
+}
+
+.form-dialog {
+    -fx-background-color: white;
+}
+
+/* =====================================================
+   Project Management (Phase 10)
+   ===================================================== */
+
+.badge-info {
+    -fx-background-color: #dbeafe;
+    -fx-text-fill: #1E90FF;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 3 10 3 10;
+    -fx-background-radius: 10;
+}
+
+.badge-warning {
+    -fx-background-color: #fef3c7;
+    -fx-text-fill: #d97706;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 3 10 3 10;
+    -fx-background-radius: 10;
+}
