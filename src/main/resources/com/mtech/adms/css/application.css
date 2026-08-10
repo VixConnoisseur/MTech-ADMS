@@ -1,15 +1,37 @@
+/* =====================================================
+   MTech-ADMS Global Stylesheet
+   Theme: Dodger Blue (#1E90FF) + White
+   ===================================================== */
+
 .root-pane {
-    -fx-background-color: #f4f5f7;
+    -fx-background-color: linear-gradient(to bottom right, #1E90FF, #0f6fd6);
 }
+
+/* ---------- Login Card ---------- */
 
 .login-card {
     -fx-background-color: white;
-    -fx-background-radius: 8;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 12, 0, 0, 2);
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 24, 0, 0, 8);
+}
+
+.login-logo-circle {
+    -fx-background-color: #1E90FF;
+    -fx-background-radius: 100;
+    -fx-min-width: 56;
+    -fx-min-height: 56;
+    -fx-max-width: 56;
+    -fx-max-height: 56;
+}
+
+.login-logo-text {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
 }
 
 .login-title {
-    -fx-font-size: 22px;
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
     -fx-text-fill: #1a1a1a;
 }
@@ -19,20 +41,291 @@
     -fx-text-fill: #6b7280;
 }
 
+.login-field-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #374151;
+}
+
+.login-field {
+    -fx-background-color: #f4f6fa;
+    -fx-background-radius: 6;
+    -fx-border-color: #e2e6ec;
+    -fx-border-radius: 6;
+    -fx-padding: 10 12 10 12;
+    -fx-font-size: 13px;
+}
+
+.login-field:focused {
+    -fx-border-color: #1E90FF;
+    -fx-background-color: white;
+}
+
 .login-error {
     -fx-text-fill: #dc2626;
     -fx-font-size: 12px;
+    -fx-background-color: #fef2f2;
+    -fx-background-radius: 6;
+    -fx-padding: 8 10 8 10;
 }
 
 .login-button {
-    -fx-background-color: #2563eb;
+    -fx-background-color: #1E90FF;
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-padding: 10 0 10 0;
-    -fx-background-radius: 4;
+    -fx-font-size: 13px;
+    -fx-padding: 11 0 11 0;
+    -fx-background-radius: 6;
     -fx-cursor: hand;
 }
 
 .login-button:hover {
-    -fx-background-color: #1d4ed8;
+    -fx-background-color: #1476d6;
+}
+
+.login-button:pressed {
+    -fx-background-color: #0f5fb8;
+}
+
+.login-footer {
+    -fx-font-size: 10px;
+    -fx-text-fill: #9ca3af;
+}
+
+/* =====================================================
+   Main Application Shell (Phase 7)
+   ===================================================== */
+
+.app-shell {
+    -fx-background-color: white;
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar {
+    -fx-background-color: white;
+    -fx-border-color: transparent #eef0f4 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+.sidebar-brand {
+    -fx-border-color: transparent transparent #eef0f4 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.sidebar-brand-text {
+    -fx-text-fill: #1E90FF;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.sidebar-section-label {
+    -fx-text-fill: #9ca3af;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 16 0 6 10;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #4b5563;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 14 10 14;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: #eaf3ff;
+    -fx-text-fill: #1E90FF;
+}
+
+.nav-button-active {
+    -fx-background-color: #1E90FF;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.nav-button-active:hover {
+    -fx-background-color: #1476d6;
+    -fx-text-fill: white;
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar {
+    -fx-background-color: #1E90FF;
+}
+
+.sidebar-brand {
+    -fx-border-color: transparent transparent rgba(255,255,255,0.15) transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.sidebar-brand-text {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.sidebar-section-label {
+    -fx-text-fill: rgba(255,255,255,0.65);
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 16 0 6 10;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgba(255,255,255,0.85);
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 10 14 10 14;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(255,255,255,0.12);
+    -fx-text-fill: white;
+}
+
+.nav-button-active {
+    -fx-background-color: white;
+    -fx-text-fill: #1E90FF;
+    -fx-font-weight: bold;
+}
+
+.nav-button-active:hover {
+    -fx-background-color: white;
+    -fx-text-fill: #1E90FF;
+}
+
+/* ---------- Sidebar Footer / User Card ---------- */
+
+.sidebar-footer {
+    -fx-border-color: rgba(255,255,255,0.15) transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.user-card {
+    -fx-background-color: rgba(255,255,255,0.12);
+    -fx-background-radius: 10;
+}
+
+.user-avatar {
+    -fx-background-color: white;
+    -fx-background-radius: 100;
+    -fx-min-width: 34;
+    -fx-min-height: 34;
+    -fx-max-width: 34;
+    -fx-max-height: 34;
+}
+
+.user-avatar-text {
+    -fx-text-fill: #1E90FF;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+}
+
+.user-card-name {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.user-card-role {
+    -fx-font-size: 10px;
+    -fx-text-fill: rgba(255,255,255,0.75);
+}
+
+.logout-button {
+    -fx-background-color: rgba(255,255,255,0.12);
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 9 0 9 0;
+    -fx-background-radius: 6;
+    -fx-border-color: rgba(255,255,255,0.3);
+    -fx-border-radius: 6;
+    -fx-cursor: hand;
+}
+
+.logout-button:hover {
+    -fx-background-color: rgba(255,255,255,0.22);
+}
+
+/* ---------- Header ---------- */
+
+.header {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #eef0f4 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.header-title {
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a1a1a;
+}
+
+.header-subtitle {
+    -fx-font-size: 11px;
+    -fx-text-fill: #9ca3af;
+}
+
+.header-search {
+    -fx-background-color: #f4f6fa;
+    -fx-background-radius: 20;
+    -fx-padding: 8 16 8 16;
+    -fx-font-size: 12px;
+    -fx-border-color: transparent;
+}
+
+.header-search:focused {
+    -fx-background-color: #eaf3ff;
+    -fx-border-color: #1E90FF;
+    -fx-border-radius: 20;
+}
+
+.header-icon-button {
+    -fx-background-color: #f4f6fa;
+    -fx-background-radius: 100;
+    -fx-min-width: 38;
+    -fx-min-height: 38;
+    -fx-max-width: 38;
+    -fx-max-height: 38;
+    -fx-cursor: hand;
+}
+
+.header-icon-button:hover {
+    -fx-background-color: #eaf3ff;
+}
+
+.header-icon {
+    -fx-font-size: 14px;
+}
+
+/* ---------- Content Area ---------- */
+
+.content-area {
+    -fx-background-color: #f4f6fa;
+}
+
+.placeholder-content {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 16, 0, 0, 4);
+}
+
+.placeholder-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a1a1a;
+}
+
+.placeholder-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #6b7280;
 }

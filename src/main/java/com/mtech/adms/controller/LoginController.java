@@ -53,7 +53,7 @@ public class LoginController {
     private void navigateToMainView() {
         try {
             Parent root = FXMLLoader.load(
-                    getClass().getResource("/com/mtech/adms/fxml/MainView.fxml")
+                    getClass().getResource("/com/mtech/adms/fxml/MainLayout.fxml")
             );
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
@@ -64,7 +64,7 @@ public class LoginController {
             stage.setScene(scene);
 
         } catch (IOException e) {
-            AppLogger.error("Failed to load MainView after login", e);
+            AppLogger.error("Failed to load MainLayout after login", e);
             showError("Login succeeded, but failed to load the main screen.");
         }
     }

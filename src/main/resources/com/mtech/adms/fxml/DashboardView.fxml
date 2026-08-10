@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.mtech.adms.controller.DashboardController">
+    <padding>
+        <Insets top="24" bottom="24" left="24" right="24"/>
+    </padding>
+
+    <VBox alignment="CENTER" spacing="8" styleClass="placeholder-content" maxWidth="Infinity" maxHeight="Infinity">
+        <padding>
+            <Insets top="60" bottom="60" left="40" right="40"/>
+        </padding>
+        <Label text="Dashboard" styleClass="placeholder-title"/>
+        <Label text="Phase 7 OK — Main layout, sidebar, and navigation are working." styleClass="placeholder-subtitle"/>
+    </VBox>
+</StackPane>
