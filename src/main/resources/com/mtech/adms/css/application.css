@@ -329,3 +329,136 @@
     -fx-font-size: 13px;
     -fx-text-fill: #6b7280;
 }
+
+/* =====================================================
+   Dashboard (Phase 8)
+   ===================================================== */
+
+.dashboard-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.dashboard-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* ---------- Stat Cards ---------- */
+
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 12, 0, 0, 3);
+}
+
+.stat-card-primary {
+    -fx-background-color: #1E90FF;
+}
+
+.stat-card-primary .stat-value,
+.stat-card-primary .stat-label {
+    -fx-text-fill: white;
+}
+
+.stat-card-alert {
+    -fx-border-color: #fecaca;
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+}
+
+.stat-value {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a1a1a;
+}
+
+.stat-value-green {
+    -fx-text-fill: #16a34a;
+}
+
+.stat-value-blue {
+    -fx-text-fill: #1E90FF;
+}
+
+.stat-value-red {
+    -fx-text-fill: #dc2626;
+}
+
+.stat-value-orange {
+    -fx-text-fill: #ea580c;
+}
+
+.stat-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6b7280;
+}
+
+/* ---------- Panels (Recent Deployments / Alerts) ---------- */
+
+.panel-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 12, 0, 0, 3);
+}
+
+.panel-title {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a1a1a;
+}
+
+.dashboard-table {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.dashboard-table .column-header-background {
+    -fx-background-color: #f4f6fa;
+    -fx-background-radius: 6 6 0 0;
+}
+
+.dashboard-table .column-header .label {
+    -fx-text-fill: #6b7280;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.dashboard-table .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #f1f2f5 transparent;
+}
+
+.dashboard-table .table-row-cell:selected {
+    -fx-background-color: #eaf3ff;
+}
+
+.dashboard-table .table-cell {
+    -fx-font-size: 12px;
+    -fx-text-fill: #374151;
+}
+
+/* ---------- Overdue Alerts ---------- */
+
+.alert-item {
+    -fx-background-color: #fef2f2;
+    -fx-background-radius: 8;
+    -fx-border-color: #fecaca;
+    -fx-border-radius: 8;
+}
+
+.alert-item-title {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #991b1b;
+}
+
+.alert-item-subtitle {
+    -fx-font-size: 11px;
+    -fx-text-fill: #b91c1c;
+}
+
+.alert-empty {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6b7280;
+    -fx-padding: 8 0 0 0;
+}

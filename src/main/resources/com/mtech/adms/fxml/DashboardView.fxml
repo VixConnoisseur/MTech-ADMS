@@ -2,21 +2,123 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
 
-<StackPane xmlns="http://javafx.com/javafx"
-           xmlns:fx="http://javafx.com/fxml"
-           fx:controller="com.mtech.adms.controller.DashboardController">
-    <padding>
-        <Insets top="24" bottom="24" left="24" right="24"/>
-    </padding>
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.mtech.adms.controller.DashboardController"
+            fitToWidth="true" styleClass="dashboard-scroll">
 
-    <VBox alignment="CENTER" spacing="8" styleClass="placeholder-content" maxWidth="Infinity" maxHeight="Infinity">
+    <VBox spacing="20">
         <padding>
-            <Insets top="60" bottom="60" left="40" right="40"/>
+            <Insets top="24" bottom="24" left="24" right="24"/>
         </padding>
-        <Label text="Dashboard" styleClass="placeholder-title"/>
-        <Label text="Phase 7 OK — Main layout, sidebar, and navigation are working." styleClass="placeholder-subtitle"/>
+
+        <!-- ===================== STAT CARDS ===================== -->
+        <GridPane hgap="16" vgap="16">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="20"/>
+                <ColumnConstraints percentWidth="20"/>
+                <ColumnConstraints percentWidth="20"/>
+                <ColumnConstraints percentWidth="20"/>
+                <ColumnConstraints percentWidth="20"/>
+            </columnConstraints>
+
+            <VBox styleClass="stat-card, stat-card-primary" spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <padding><Insets top="16" bottom="16" left="16" right="16"/></padding>
+                <Label fx:id="totalAssetsLabel" text="0" styleClass="stat-value"/>
+                <Label text="Total Assets" styleClass="stat-label"/>
+            </VBox>
+
+            <VBox styleClass="stat-card" spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <padding><Insets top="16" bottom="16" left="16" right="16"/></padding>
+                <Label fx:id="availableAssetsLabel" text="0" styleClass="stat-value, stat-value-green"/>
+                <Label text="Available" styleClass="stat-label"/>
+            </VBox>
+
+            <VBox styleClass="stat-card" spacing="4" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <padding><Insets top="16" bottom="16" left="16" right="16"/></padding>
+                <Label fx:id="deployedAssetsLabel" text="0" styleClass="stat-value, stat-value-blue"/>
+                <Label text="Deployed" styleClass="stat-label"/>
+            </VBox>
+
+            <VBox styleClass="stat-card" spacing="4" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                <padding><Insets top="16" bottom="16" left="16" right="16"/></padding>
+                <Label fx:id="damagedAssetsLabel" text="0" styleClass="stat-value, stat-value-red"/>
+                <Label text="Damaged" styleClass="stat-label"/>
+            </VBox>
+
+            <VBox styleClass="stat-card" spacing="4" GridPane.columnIndex="4" GridPane.rowIndex="0">
+                <padding><Insets top="16" bottom="16" left="16" right="16"/></padding>
+                <Label fx:id="missingAssetsLabel" text="0" styleClass="stat-value, stat-value-red"/>
+                <Label text="Missing" styleClass="stat-label"/>
+            </VBox>
+
+            <VBox styleClass="stat-card" spacing="4" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <padding><Insets top="16" bottom="16" left="16" right="16"/></padding>
+                <Label fx:id="underRepairAssetsLabel" text="0" styleClass="stat-value, stat-value-orange"/>
+                <Label text="Under Repair" styleClass="stat-label"/>
+            </VBox>
+
+            <VBox styleClass="stat-card" spacing="4" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <padding><Insets top="16" bottom="16" left="16" right="16"/></padding>
+                <Label fx:id="activeProjectsLabel" text="0" styleClass="stat-value"/>
+                <Label text="Active Projects" styleClass="stat-label"/>
+            </VBox>
+
+            <VBox styleClass="stat-card" spacing="4" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <padding><Insets top="16" bottom="16" left="16" right="16"/></padding>
+                <Label fx:id="activeSitesLabel" text="0" styleClass="stat-value"/>
+                <Label text="Active Sites" styleClass="stat-label"/>
+            </VBox>
+
+            <VBox styleClass="stat-card" spacing="4" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                <padding><Insets top="16" bottom="16" left="16" right="16"/></padding>
+                <Label fx:id="activeEmployeesLabel" text="0" styleClass="stat-value"/>
+                <Label text="Active Employees" styleClass="stat-label"/>
+            </VBox>
+
+            <VBox styleClass="stat-card, stat-card-alert" spacing="4" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                <padding><Insets top="16" bottom="16" left="16" right="16"/></padding>
+                <Label fx:id="overdueReturnsLabel" text="0" styleClass="stat-value, stat-value-red"/>
+                <Label text="Overdue Returns" styleClass="stat-label"/>
+            </VBox>
+
+        </GridPane>
+
+        <!-- ===================== RECENT + ALERTS ===================== -->
+        <HBox spacing="16">
+
+            <VBox styleClass="panel-card" spacing="12" HBox.hgrow="ALWAYS">
+                <padding><Insets top="18" bottom="18" left="18" right="18"/></padding>
+                <Label text="Recent Deployments" styleClass="panel-title"/>
+
+                <TableView fx:id="recentDeploymentsTable" styleClass="dashboard-table" prefHeight="240">
+                    <columns>
+                        <TableColumn fx:id="colDeploymentCode" text="Code" prefWidth="90"/>
+                        <TableColumn fx:id="colProject" text="Project" prefWidth="150"/>
+                        <TableColumn fx:id="colSite" text="Site" prefWidth="120"/>
+                        <TableColumn fx:id="colLeader" text="Team Leader" prefWidth="130"/>
+                        <TableColumn fx:id="colDeployDate" text="Deployed" prefWidth="100"/>
+                        <TableColumn fx:id="colStatus" text="Status" prefWidth="110"/>
+                    </columns>
+                </TableView>
+            </VBox>
+
+            <VBox styleClass="panel-card" spacing="12" prefWidth="320" minWidth="320">
+                <padding><Insets top="18" bottom="18" left="18" right="18"/></padding>
+                <Label text="Overdue Return Alerts" styleClass="panel-title"/>
+
+                <VBox fx:id="overdueAlertsBox" spacing="8"/>
+            </VBox>
+
+        </HBox>
+
     </VBox>
-</StackPane>
+</ScrollPane>
