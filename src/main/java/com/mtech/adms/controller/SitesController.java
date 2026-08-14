@@ -1,7 +1,7 @@
 package com.mtech.adms.controller;
 
-import com.mtech.adms.model.Employee;
-import com.mtech.adms.service.EmployeeService;
+import com.mtech.adms.model.Site;
+import com.mtech.adms.service.SiteService;
 import com.mtech.adms.util.AppLogger;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -23,35 +23,36 @@ import javafx.stage.Stage;
 
 import java.util.Optional;
 
-public class EmployeesController {
+public class SitesController {
 
     @FXML private TextField searchField;
-    @FXML private TableView<Employee> employeesTable;
-    @FXML private TableColumn<Employee, String> colCode;
-    @FXML private TableColumn<Employee, String> colName;
-    @FXML private TableColumn<Employee, String> colPosition;
-    @FXML private TableColumn<Employee, String> colContact;
-    @FXML private TableColumn<Employee, String> colStatus;
-    @FXML private TableColumn<Employee, Void> colActions;
+    @FXML private TableView<Site> sitesTable;
+    @FXML private TableColumn<Site, String> colSiteName;
+    @FXML private TableColumn<Site, String> colAddress;
+    @FXML private TableColumn<Site, String> colCity;
+    @FXML private TableColumn<Site, String> colStatus;
+    @FXML private TableColumn<Site, Void> colActions;
 
-    private final EmployeeService employeeService = new EmployeeService();
+    private final SiteService siteService = new SiteService();
 
     @FXML
     private void initialize() {
+        sitesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         setupColumns();
-        employeesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        loadEmployees(null);
+        loadSites(null);
 
-        searchField.textProperty().addListener((obs, oldVal, newVal) -> loadEmployees(newVal));
+        searchField.textProperty().addListener((obs, oldVal, newVal) -> loadSites(newVal));
     }
 
     private void setupColumns() {
-        colCode.setCellValueFactory(new PropertyValueFactory<>("employeeCode"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-        colPosition.setCellValueFactory(new PropertyValueFactory<>("position"));
-        colContact.setCellValueFactory(new PropertyValueFactory<>("contactNo"));
+        colSiteName.setCellValueFactory(new PropertyValueFactory<>("siteName"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+        colCity.setCellValueFactory(new PropertyValueFactory<>("city"));
 
-        colStatus.setCellValueFactory(new PropertyValueFactory<>("statusLabel"));
+        colStatus.setCellValueFactory(cellData -> {
+            String label = cellData.getValue().isActive() ? "Active" : "Inactive";
+            return new javafx.beans.property.SimpleStringProperty(label);
+        });
         colStatus.setCellFactory(col -> new TableCell<>() {
             @Override
             protected void updateItem(String status, boolean empty) {
@@ -88,43 +89,43 @@ public class EmployeesController {
                     setGraphic(null);
                     return;
                 }
-                Employee employee = getTableRow().getItem();
-                toggleBtn.setText(employee.isActive() ? "Deactivate" : "Activate");
+                Site site = getTableRow().getItem();
+                toggleBtn.setText(site.isActive() ? "Deactivate" : "Activate");
                 toggleBtn.getStyleClass().removeAll("table-action-danger", "table-action-success");
-                toggleBtn.getStyleClass().add(employee.isActive() ? "table-action-danger" : "table-action-success");
+                toggleBtn.getStyleClass().add(site.isActive() ? "table-action-danger" : "table-action-success");
                 setGraphic(box);
             }
         });
     }
 
-    private void loadEmployees(String keyword) {
+    private void loadSites(String keyword) {
         try {
-            var employees = employeeService.search(keyword);
-            employeesTable.setItems(FXCollections.observableArrayList(employees));
+            var sites = siteService.search(keyword);
+            sitesTable.setItems(FXCollections.observableArrayList(sites));
         } catch (Exception e) {
-            AppLogger.error("Failed to load employees", e);
+            AppLogger.error("Failed to load sites", e);
         }
     }
 
     @FXML
-    private void handleAddEmployee() {
+    private void handleAddSite() {
         openForm(null);
     }
 
-    private void openForm(Employee employee) {
+    private void openForm(Site site) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/mtech/adms/fxml/EmployeeFormDialog.fxml"));
+                    getClass().getResource("/com/mtech/adms/fxml/SiteFormDialog.fxml"));
             Parent root = loader.load();
 
-            EmployeeFormController controller = loader.getController();
-            controller.setEmployee(employee);
-            controller.setOnSaved(() -> loadEmployees(searchField.getText()));
+            SiteFormController controller = loader.getController();
+            controller.setSite(site);
+            controller.setOnSaved(() -> loadSites(searchField.getText()));
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle(employee == null ? "Add Employee" : "Edit Employee");
+            dialogStage.setTitle(site == null ? "Add Site" : "Edit Site");
             dialogStage.initModality(Modality.APPLICATION_MODAL);
-            dialogStage.initOwner(employeesTable.getScene().getWindow());
+            dialogStage.initOwner(sitesTable.getScene().getWindow());
 
             Scene scene = new Scene(root);
             scene.getStylesheets().add(
@@ -134,29 +135,29 @@ public class EmployeesController {
             dialogStage.showAndWait();
 
         } catch (Exception e) {
-            AppLogger.error("Failed to open employee form", e);
+            AppLogger.error("Failed to open site form", e);
         }
     }
 
-    private void handleToggleActive(Employee employee) {
-        if (employee == null) {
+    private void handleToggleActive(Site site) {
+        if (site == null) {
             return;
         }
-        boolean newStatus = !employee.isActive();
+        boolean newStatus = !site.isActive();
         String action = newStatus ? "activate" : "deactivate";
 
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle("Confirm " + action);
         confirm.setHeaderText(null);
-        confirm.setContentText("Are you sure you want to " + action + " " + employee.getFullName() + "?");
+        confirm.setContentText("Are you sure you want to " + action + " " + site.getSiteName() + "?");
 
         Optional<ButtonType> result = confirm.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
-                employeeService.setActive(employee.getId(), newStatus);
-                loadEmployees(searchField.getText());
+                siteService.setActive(site.getId(), newStatus);
+                loadSites(searchField.getText());
             } catch (Exception e) {
-                AppLogger.error("Failed to toggle employee active status", e);
+                AppLogger.error("Failed to toggle site active status", e);
             }
         }
     }

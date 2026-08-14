@@ -91,15 +91,13 @@ public class MainLayoutController {
     @FXML
     private void showSites() {
         setActiveNav(navSites);
-        pageTitleLabel.setText("Sites");
-        AppLogger.info("Sites module not yet implemented (Phase 11).");
+        loadContent("/com/mtech/adms/fxml/SitesView.fxml", "Sites");
     }
 
     @FXML
     private void showAssets() {
         setActiveNav(navAssets);
-        pageTitleLabel.setText("Assets");
-        AppLogger.info("Assets module not yet implemented (Phase 13).");
+        loadContent("/com/mtech/adms/fxml/AssetsView.fxml", "Assets");
     }
 
     @FXML
@@ -119,8 +117,7 @@ public class MainLayoutController {
     @FXML
     private void showSettings() {
         setActiveNav(navSettings);
-        pageTitleLabel.setText("Settings");
-        AppLogger.info("Settings module not yet implemented.");
+        loadContent("/com/mtech/adms/fxml/AssetCategoriesView.fxml", "Asset Categories");
     }
 
     @FXML

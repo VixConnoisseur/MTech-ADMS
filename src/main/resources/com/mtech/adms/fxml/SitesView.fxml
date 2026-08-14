@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.mtech.adms.controller.SitesController"
+      spacing="16" maxWidth="Infinity" maxHeight="Infinity">
+    <padding>
+        <Insets top="24" bottom="24" left="24" right="24"/>
+    </padding>
+
+    <VBox styleClass="panel-card" spacing="14" VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity">
+        <padding>
+            <Insets top="18" bottom="18" left="18" right="18"/>
+        </padding>
+
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <TextField fx:id="searchField" promptText="Search by site name or city..."
+                       styleClass="header-search" prefWidth="320"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="+ Add Site" onAction="#handleAddSite" styleClass="primary-button"/>
+        </HBox>
+
+        <TableView fx:id="sitesTable" styleClass="dashboard-table" VBox.vgrow="ALWAYS" maxWidth="Infinity">
+            <columns>
+                <TableColumn fx:id="colSiteName" text="Site Name" prefWidth="220"/>
+                <TableColumn fx:id="colAddress" text="Address" prefWidth="260"/>
+                <TableColumn fx:id="colCity" text="City" prefWidth="140"/>
+                <TableColumn fx:id="colStatus" text="Status" prefWidth="100"/>
+                <TableColumn fx:id="colActions" text="Actions" prefWidth="160"/>
+            </columns>
+        </TableView>
+
+    </VBox>
+</VBox>

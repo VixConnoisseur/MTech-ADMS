@@ -57,7 +57,7 @@ public class LoginController {
             );
 
             Stage stage = (Stage) loginButton.getScene().getWindow();
-            Scene scene = new Scene(root, 1024, 768);
+            Scene scene = new Scene(root);
             scene.getStylesheets().add(
                     getClass().getResource("/com/mtech/adms/css/application.css").toExternalForm()
             );

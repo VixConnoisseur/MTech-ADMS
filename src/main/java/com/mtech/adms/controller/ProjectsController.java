@@ -41,6 +41,7 @@ public class ProjectsController {
     @FXML
     private void initialize() {
         setupColumns();
+        projectsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         loadProjects(null);
 
         searchField.textProperty().addListener((obs, oldVal, newVal) -> loadProjects(newVal));

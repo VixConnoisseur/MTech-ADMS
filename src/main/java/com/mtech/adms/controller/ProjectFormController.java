@@ -49,7 +49,7 @@ public class ProjectFormController {
         ));
         statusComboBox.getSelectionModel().select(Constants.ProjectStatus.PLANNING);
 
-        sitesListView.setItems(FXCollections.observableArrayList(siteDao.findAll()));
+        sitesListView.setItems(FXCollections.observableArrayList(siteDao.findAllActive()));
         sitesListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 

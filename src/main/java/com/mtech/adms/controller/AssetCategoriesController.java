@@ -1,7 +1,7 @@
 package com.mtech.adms.controller;
 
-import com.mtech.adms.model.Employee;
-import com.mtech.adms.service.EmployeeService;
+import com.mtech.adms.model.AssetCategory;
+import com.mtech.adms.service.AssetCategoryService;
 import com.mtech.adms.util.AppLogger;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -23,35 +23,34 @@ import javafx.stage.Stage;
 
 import java.util.Optional;
 
-public class EmployeesController {
+public class AssetCategoriesController {
 
     @FXML private TextField searchField;
-    @FXML private TableView<Employee> employeesTable;
-    @FXML private TableColumn<Employee, String> colCode;
-    @FXML private TableColumn<Employee, String> colName;
-    @FXML private TableColumn<Employee, String> colPosition;
-    @FXML private TableColumn<Employee, String> colContact;
-    @FXML private TableColumn<Employee, String> colStatus;
-    @FXML private TableColumn<Employee, Void> colActions;
+    @FXML private TableView<AssetCategory> categoriesTable;
+    @FXML private TableColumn<AssetCategory, String> colName;
+    @FXML private TableColumn<AssetCategory, String> colDescription;
+    @FXML private TableColumn<AssetCategory, String> colStatus;
+    @FXML private TableColumn<AssetCategory, Void> colActions;
 
-    private final EmployeeService employeeService = new EmployeeService();
+    private final AssetCategoryService categoryService = new AssetCategoryService();
 
     @FXML
     private void initialize() {
+        categoriesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         setupColumns();
-        employeesTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        loadEmployees(null);
+        loadCategories(null);
 
-        searchField.textProperty().addListener((obs, oldVal, newVal) -> loadEmployees(newVal));
+        searchField.textProperty().addListener((obs, oldVal, newVal) -> loadCategories(newVal));
     }
 
     private void setupColumns() {
-        colCode.setCellValueFactory(new PropertyValueFactory<>("employeeCode"));
-        colName.setCellValueFactory(new PropertyValueFactory<>("fullName"));
-        colPosition.setCellValueFactory(new PropertyValueFactory<>("position"));
-        colContact.setCellValueFactory(new PropertyValueFactory<>("contactNo"));
+        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
 
-        colStatus.setCellValueFactory(new PropertyValueFactory<>("statusLabel"));
+        colStatus.setCellValueFactory(cellData -> {
+            String label = cellData.getValue().isActive() ? "Active" : "Inactive";
+            return new javafx.beans.property.SimpleStringProperty(label);
+        });
         colStatus.setCellFactory(col -> new TableCell<>() {
             @Override
             protected void updateItem(String status, boolean empty) {
@@ -88,43 +87,43 @@ public class EmployeesController {
                     setGraphic(null);
                     return;
                 }
-                Employee employee = getTableRow().getItem();
-                toggleBtn.setText(employee.isActive() ? "Deactivate" : "Activate");
+                AssetCategory category = getTableRow().getItem();
+                toggleBtn.setText(category.isActive() ? "Deactivate" : "Activate");
                 toggleBtn.getStyleClass().removeAll("table-action-danger", "table-action-success");
-                toggleBtn.getStyleClass().add(employee.isActive() ? "table-action-danger" : "table-action-success");
+                toggleBtn.getStyleClass().add(category.isActive() ? "table-action-danger" : "table-action-success");
                 setGraphic(box);
             }
         });
     }
 
-    private void loadEmployees(String keyword) {
+    private void loadCategories(String keyword) {
         try {
-            var employees = employeeService.search(keyword);
-            employeesTable.setItems(FXCollections.observableArrayList(employees));
+            var categories = categoryService.search(keyword);
+            categoriesTable.setItems(FXCollections.observableArrayList(categories));
         } catch (Exception e) {
-            AppLogger.error("Failed to load employees", e);
+            AppLogger.error("Failed to load asset categories", e);
         }
     }
 
     @FXML
-    private void handleAddEmployee() {
+    private void handleAddCategory() {
         openForm(null);
     }
 
-    private void openForm(Employee employee) {
+    private void openForm(AssetCategory category) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/com/mtech/adms/fxml/EmployeeFormDialog.fxml"));
+                    getClass().getResource("/com/mtech/adms/fxml/AssetCategoryFormDialog.fxml"));
             Parent root = loader.load();
 
-            EmployeeFormController controller = loader.getController();
-            controller.setEmployee(employee);
-            controller.setOnSaved(() -> loadEmployees(searchField.getText()));
+            AssetCategoryFormController controller = loader.getController();
+            controller.setCategory(category);
+            controller.setOnSaved(() -> loadCategories(searchField.getText()));
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle(employee == null ? "Add Employee" : "Edit Employee");
+            dialogStage.setTitle(category == null ? "Add Category" : "Edit Category");
             dialogStage.initModality(Modality.APPLICATION_MODAL);
-            dialogStage.initOwner(employeesTable.getScene().getWindow());
+            dialogStage.initOwner(categoriesTable.getScene().getWindow());
 
             Scene scene = new Scene(root);
             scene.getStylesheets().add(
@@ -134,29 +133,29 @@ public class EmployeesController {
             dialogStage.showAndWait();
 
         } catch (Exception e) {
-            AppLogger.error("Failed to open employee form", e);
+            AppLogger.error("Failed to open category form", e);
         }
     }
 
-    private void handleToggleActive(Employee employee) {
-        if (employee == null) {
+    private void handleToggleActive(AssetCategory category) {
+        if (category == null) {
             return;
         }
-        boolean newStatus = !employee.isActive();
+        boolean newStatus = !category.isActive();
         String action = newStatus ? "activate" : "deactivate";
 
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle("Confirm " + action);
         confirm.setHeaderText(null);
-        confirm.setContentText("Are you sure you want to " + action + " " + employee.getFullName() + "?");
+        confirm.setContentText("Are you sure you want to " + action + " " + category.getName() + "?");
 
         Optional<ButtonType> result = confirm.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             try {
-                employeeService.setActive(employee.getId(), newStatus);
-                loadEmployees(searchField.getText());
+                categoryService.setActive(category.getId(), newStatus);
+                loadCategories(searchField.getText());
             } catch (Exception e) {
-                AppLogger.error("Failed to toggle employee active status", e);
+                AppLogger.error("Failed to toggle category active status", e);
             }
         }
     }

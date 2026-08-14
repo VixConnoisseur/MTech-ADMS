@@ -126,6 +126,21 @@
     -fx-padding: 16 0 6 10;
 }
 
+.sidebar-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-color: transparent #eef0f4 transparent transparent;
+    -fx-border-width: 0 1 0 0;
+}
+
+.sidebar-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.sidebar-scroll .scroll-bar:vertical {
+    -fx-pref-width: 6;
+}
+
 .nav-button {
     -fx-background-color: transparent;
     -fx-text-fill: #4b5563;
@@ -553,6 +568,19 @@
 .badge-warning {
     -fx-background-color: #fef3c7;
     -fx-text-fill: #d97706;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 3 10 3 10;
+    -fx-background-radius: 10;
+}
+
+/* =====================================================
+   Asset Management (Phase 13)
+   ===================================================== */
+
+.badge-danger {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #dc2626;
     -fx-font-size: 11px;
     -fx-font-weight: bold;
     -fx-padding: 3 10 3 10;

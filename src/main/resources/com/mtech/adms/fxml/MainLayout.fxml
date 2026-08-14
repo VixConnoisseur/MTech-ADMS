@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,73 +20,76 @@
 
     <!-- ===================== SIDEBAR ===================== -->
     <left>
-        <VBox styleClass="sidebar" prefWidth="240" minWidth="240">
+        <ScrollPane fitToWidth="true" styleClass="sidebar-scroll" prefWidth="240" minWidth="240"
+                    hbarPolicy="NEVER" vbarPolicy="AS_NEEDED">
+            <VBox styleClass="sidebar" prefWidth="240" minWidth="240" minHeight="720">
 
-            <VBox alignment="CENTER_LEFT" styleClass="sidebar-brand" spacing="10">
-                <padding>
-                    <Insets top="26" bottom="22" left="20" right="20"/>
-                </padding>
-                <HBox alignment="CENTER_LEFT" spacing="10">
-                    <ImageView fitWidth="36" fitHeight="36" preserveRatio="true">
-                        <Image url="@../images/mtech-logo.png"/>
-                    </ImageView>
-                    <Label text="MTech-ADMS" styleClass="sidebar-brand-text"/>
-                </HBox>
-            </VBox>
-
-            <VBox styleClass="sidebar-nav" spacing="3">
-                <padding>
-                    <Insets top="4" left="14" right="14"/>
-                </padding>
-
-                <Label text="MAIN MENU" styleClass="sidebar-section-label"/>
-
-                <Button fx:id="navDashboard" text="Dashboard" onAction="#showDashboard"
-                        styleClass="nav-button" maxWidth="Infinity"/>
-                <Button fx:id="navEmployees" text="Employees" onAction="#showEmployees"
-                        styleClass="nav-button" maxWidth="Infinity"/>
-                <Button fx:id="navProjects" text="Projects" onAction="#showProjects"
-                        styleClass="nav-button" maxWidth="Infinity"/>
-                <Button fx:id="navSites" text="Sites" onAction="#showSites"
-                        styleClass="nav-button" maxWidth="Infinity"/>
-                <Button fx:id="navAssets" text="Assets" onAction="#showAssets"
-                        styleClass="nav-button" maxWidth="Infinity"/>
-                <Button fx:id="navDeployments" text="Deployments" onAction="#showDeployments"
-                        styleClass="nav-button" maxWidth="Infinity"/>
-
-                <Label text="SYSTEM" styleClass="sidebar-section-label"/>
-
-                <Button fx:id="navReports" text="Reports" onAction="#showReports"
-                        styleClass="nav-button" maxWidth="Infinity"/>
-                <Button fx:id="navSettings" text="Settings" onAction="#showSettings"
-                        styleClass="nav-button" maxWidth="Infinity"/>
-            </VBox>
-
-            <Region VBox.vgrow="ALWAYS"/>
-
-            <VBox styleClass="sidebar-footer" spacing="10">
-                <padding>
-                    <Insets top="14" bottom="18" left="16" right="16"/>
-                </padding>
-
-                <HBox styleClass="user-card" alignment="CENTER_LEFT" spacing="10">
+                <VBox alignment="CENTER_LEFT" styleClass="sidebar-brand" spacing="10">
                     <padding>
-                        <Insets top="10" bottom="10" left="10" right="10"/>
+                        <Insets top="26" bottom="22" left="20" right="20"/>
                     </padding>
-                    <StackPane styleClass="user-avatar">
-                        <Label fx:id="userInitialsLabel" text="U" styleClass="user-avatar-text"/>
-                    </StackPane>
-                    <VBox spacing="1" HBox.hgrow="ALWAYS">
-                        <Label fx:id="userNameLabel" text="User Name" styleClass="user-card-name"/>
-                        <Label fx:id="userRoleLabel" text="Role" styleClass="user-card-role"/>
-                    </VBox>
-                </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <ImageView fitWidth="36" fitHeight="36" preserveRatio="true">
+                            <Image url="@../images/mtech-logo.png"/>
+                        </ImageView>
+                        <Label text="MTech-ADMS" styleClass="sidebar-brand-text"/>
+                    </HBox>
+                </VBox>
 
-                <Button fx:id="logoutButton" text="Log Out" onAction="#handleLogout"
-                        styleClass="logout-button" maxWidth="Infinity"/>
+                <VBox styleClass="sidebar-nav" spacing="3">
+                    <padding>
+                        <Insets top="4" left="14" right="14"/>
+                    </padding>
+
+                    <Label text="MAIN MENU" styleClass="sidebar-section-label"/>
+
+                    <Button fx:id="navDashboard" text="Dashboard" onAction="#showDashboard"
+                            styleClass="nav-button" maxWidth="Infinity"/>
+                    <Button fx:id="navEmployees" text="Employees" onAction="#showEmployees"
+                            styleClass="nav-button" maxWidth="Infinity"/>
+                    <Button fx:id="navProjects" text="Projects" onAction="#showProjects"
+                            styleClass="nav-button" maxWidth="Infinity"/>
+                    <Button fx:id="navSites" text="Sites" onAction="#showSites"
+                            styleClass="nav-button" maxWidth="Infinity"/>
+                    <Button fx:id="navAssets" text="Assets" onAction="#showAssets"
+                            styleClass="nav-button" maxWidth="Infinity"/>
+                    <Button fx:id="navDeployments" text="Deployments" onAction="#showDeployments"
+                            styleClass="nav-button" maxWidth="Infinity"/>
+
+                    <Label text="SYSTEM" styleClass="sidebar-section-label"/>
+
+                    <Button fx:id="navReports" text="Reports" onAction="#showReports"
+                            styleClass="nav-button" maxWidth="Infinity"/>
+                    <Button fx:id="navSettings" text="Settings" onAction="#showSettings"
+                            styleClass="nav-button" maxWidth="Infinity"/>
+                </VBox>
+
+                <Region VBox.vgrow="ALWAYS"/>
+
+                <VBox styleClass="sidebar-footer" spacing="10">
+                    <padding>
+                        <Insets top="14" bottom="18" left="16" right="16"/>
+                    </padding>
+
+                    <HBox styleClass="user-card" alignment="CENTER_LEFT" spacing="10">
+                        <padding>
+                            <Insets top="10" bottom="10" left="10" right="10"/>
+                        </padding>
+                        <StackPane styleClass="user-avatar">
+                            <Label fx:id="userInitialsLabel" text="U" styleClass="user-avatar-text"/>
+                        </StackPane>
+                        <VBox spacing="1" HBox.hgrow="ALWAYS">
+                            <Label fx:id="userNameLabel" text="User Name" styleClass="user-card-name"/>
+                            <Label fx:id="userRoleLabel" text="Role" styleClass="user-card-role"/>
+                        </VBox>
+                    </HBox>
+
+                    <Button fx:id="logoutButton" text="Log Out" onAction="#handleLogout"
+                            styleClass="logout-button" maxWidth="Infinity"/>
+                </VBox>
+
             </VBox>
-
-        </VBox>
+        </ScrollPane>
     </left>
 
     <!-- ===================== HEADER ===================== -->

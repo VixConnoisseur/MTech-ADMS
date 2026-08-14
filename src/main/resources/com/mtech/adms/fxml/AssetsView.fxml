@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.mtech.adms.controller.AssetsController"
+      spacing="16" maxWidth="Infinity" maxHeight="Infinity">
+    <padding>
+        <Insets top="24" bottom="24" left="24" right="24"/>
+    </padding>
+
+    <VBox styleClass="panel-card" spacing="14" VBox.vgrow="ALWAYS" maxWidth="Infinity" maxHeight="Infinity">
+        <padding>
+            <Insets top="18" bottom="18" left="18" right="18"/>
+        </padding>
+
+        <HBox spacing="12" alignment="CENTER_LEFT">
+            <TextField fx:id="searchField" promptText="Search by Asset ID, name, or serial number..."
+                       styleClass="header-search" prefWidth="300"/>
+            <ComboBox fx:id="statusFilterCombo" promptText="All Statuses"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="+ Add Asset" onAction="#handleAddAsset" styleClass="primary-button"/>
+        </HBox>
+
+        <TableView fx:id="assetsTable" styleClass="dashboard-table" VBox.vgrow="ALWAYS" maxWidth="Infinity">
+            <columns>
+                <TableColumn fx:id="colAssetId" text="Asset ID" prefWidth="100"/>
+                <TableColumn fx:id="colToolName" text="Tool Name" prefWidth="180"/>
+                <TableColumn fx:id="colCategory" text="Category" prefWidth="140"/>
+                <TableColumn fx:id="colCondition" text="Condition" prefWidth="90"/>
+                <TableColumn fx:id="colStatus" text="Status" prefWidth="120"/>
+                <TableColumn fx:id="colLocation" text="Location" prefWidth="150"/>
+                <TableColumn fx:id="colActions" text="Actions" prefWidth="220"/>
+            </columns>
+        </TableView>
+
+    </VBox>
+</VBox>
